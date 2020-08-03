@@ -48,4 +48,11 @@ public class BowlingGameTest {
         assertEquals("47", result);
     }
 
+    @Test
+    void should_throw_exception_when_receive_less_than_11() {
+        BowlingGame game = new BowlingGame();
+        List<Integer> lessThan11 = Arrays.asList(1, 1, 1, 1, 1, 1, 1);
+        assertThrows(RuntimeException.class, () -> game.calculateGrade(lessThan11));
+    }
+
 }

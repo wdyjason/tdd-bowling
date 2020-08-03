@@ -5,13 +5,18 @@ public class BowlingGame {
 
     public String calculateGrade(List<Integer> hitNumbers) {
 
+        int size = hitNumbers.size();
         int totGrade = 0;
         float frame = 1;
 
-        for (int i = 0; i < hitNumbers.size(); i++){
+        if (size < 11) {
+            throw new RuntimeException("input size is illegal!");
+        }
+
+        for (int i = 0; i < size; i++){
 
             if (equals10((int)frame)) {
-                totGrade += hitNumbers.subList(i, hitNumbers.size()).stream().mapToInt(h -> h).sum();
+                totGrade += hitNumbers.subList(i, size).stream().mapToInt(h -> h).sum();
                 break;
             }
 
