@@ -3,7 +3,7 @@ import java.util.List;
 public class BowlingGame {
     public String calculateGrade(List<Integer> hitNumbers) {
         int totGrade = 0;
-        int frame = 1;
+        float frame = 1;
 
         for (int i = 0; i < hitNumbers.size(); i++){
 
@@ -19,15 +19,18 @@ public class BowlingGame {
                 throw new RuntimeException("negative number is illegal!");
             }
 
+            if (cur == 10) {
+                totGrade += (cur + next + hitNumbers.get(i + 2));
+                frame ++;
+                continue;
+            }
+
             if ((cur + next) == 10) {
                 totGrade += hitNumbers.get(i + 2);
             }
 
-            if (i % 2 == 0) {
-                frame ++;
-            }
-
             totGrade += cur;
+            frame += 0.5;
         }
 
         return Integer.toString(totGrade);

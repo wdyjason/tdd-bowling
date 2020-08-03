@@ -31,4 +31,12 @@ public class BowlingGameTest {
         String result = game.calculateGrade(spareOnly);
         assertEquals("29", result);
     }
+
+    @Test
+    void should_add_twice_more_when_receive_only_strike() {
+        BowlingGame game = new BowlingGame();
+        List<Integer> strikeOnly = Arrays.asList(1, 1, 1, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        String result = game.calculateGrade(strikeOnly);
+        assertEquals("30", result);
+    }
 }
