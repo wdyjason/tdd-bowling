@@ -15,4 +15,12 @@ public class BowlingGameTest {
         List<Integer> listHasNegativeNum = Arrays.asList(1, 2, 3, -4, 5, 6, 6, 7, 8, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 1);
         assertThrows(RuntimeException.class, () -> game.calculateGrade(listHasNegativeNum));
     }
+
+    @Test
+    void should_add_total_when_no_spare_or_strike() {
+        BowlingGame game = new BowlingGame();
+        List<Integer> noSpareOrStrike = Arrays.asList(1, 2, 3, 4, 5, 4, 1, 2, 8, 1, 1, 2, 3, 4, 3, 6, 1, 7, 8, 1);
+        String result = game.calculateGrade(noSpareOrStrike);
+        assertEquals("67", result);
+    }
 }
