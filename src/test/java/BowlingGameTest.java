@@ -19,8 +19,16 @@ public class BowlingGameTest {
     @Test
     void should_add_total_when_no_spare_or_strike() {
         BowlingGame game = new BowlingGame();
-        List<Integer> noSpareOrStrike = Arrays.asList(1, 2, 3, 4, 5, 4, 1, 2, 8, 1, 1, 2, 3, 4, 3, 6, 1, 7, 8, 1);
+        List<Integer> noSpareOrStrike = Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
         String result = game.calculateGrade(noSpareOrStrike);
-        assertEquals("67", result);
+        assertEquals("20", result);
+    }
+
+    @Test
+    void should_add_one_more_when_receive_only_spare() {
+        BowlingGame game = new BowlingGame();
+        List<Integer> spareOnly = Arrays.asList(1, 1, 1, 4, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        String result = game.calculateGrade(spareOnly);
+        assertEquals("29", result);
     }
 }
