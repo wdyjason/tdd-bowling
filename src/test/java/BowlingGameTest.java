@@ -28,4 +28,11 @@ public class BowlingGameTest {
         assertThrows(RuntimeException.class, () -> game.calcGrade(sizeLessThan11));
 
     }
+
+    @Test
+    public void should_add_sum_when_no_spare_and_strike() {
+        List<Integer> noSpareOrStrike = Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        int result = game.calcGrade(noSpareOrStrike);
+        assertEquals(20, result);
+    }
 }
