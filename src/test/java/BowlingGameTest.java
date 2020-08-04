@@ -65,4 +65,14 @@ public class BowlingGameTest {
         int result = game.calcGrade(spareAndStrike);
         assertEquals(47, result);
     }
+
+    @Test
+    void should_throw_exception_when_receive_10_pins_at_second_throw_for_first_9_frame_or_throw_more_than_10() {
+        List<Integer> input10PinsAtSecondThrow =
+                Arrays.asList(1, 1, 1, 10, 4, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        assertThrows(RuntimeException.class, () -> game.calcLastFrameGrade(input10PinsAtSecondThrow));
+
+        List<Integer> moreThan10 = Arrays.asList(0, 0, 14, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        assertThrows(RuntimeException.class, () -> game.calcLastFrameGrade(moreThan10));
+    }
 }

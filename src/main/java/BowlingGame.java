@@ -26,8 +26,6 @@ public class BowlingGame {
             int nextThrow = input.get(i + 1);
             int nextNextThrow = input.get(i + 2);
 
-            if (curThrow < 0) Utils.throwFailException("negative number is not allowed");
-
             totGrade += curThrow;
             line.getCurrentFrame().addThrowBall();
 
@@ -38,6 +36,11 @@ public class BowlingGame {
             }
 
             if (line.getCurrentFrame().isFinished()) line.nextFrame();
+
+            if (curThrow < 0) Utils.throwFailException("negative number is not allowed");
+            if (STRIKE_PINS < curThrow + nextThrow && line.getCurrentFrame().getThrowBall() == 2)
+                Utils.throwFailException("second throw strike not allowed");
+            if (STRIKE_PINS < curThrow) Utils.throwFailException("throw more than 10 is illegal");
         }
         return totGrade;
     }
