@@ -42,4 +42,13 @@ public class BowlingGameTest {
         int result = game.calcGrade(hasSpare);
         assertEquals(10, result);
     }
+
+    @Test
+    public void should_exam_last_frame_throws_equals_2_or_3() {
+        List<Integer> lastFrameSizeLessThan2 = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        assertThrows(RuntimeException.class, () -> game.calcGrade(lastFrameSizeLessThan2));
+
+        List<Integer> sizeMoreThan3 = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        assertThrows(RuntimeException.class, () -> game.calcGrade(sizeMoreThan3));
+    }
 }

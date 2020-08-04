@@ -37,6 +37,8 @@ public class BowlingGame {
     }
 
     public int calcLastFrameGrade(List<Integer> lastFrame) {
+        int lastFrameSize = lastFrame.size();
+        if (lastFrameSize < 2 || lastFrameSize > 3) Utils.throwFailException("last frame size error");
         return lastFrame.stream().mapToInt(h -> h).sum();
     }
 }
