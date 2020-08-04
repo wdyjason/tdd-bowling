@@ -58,4 +58,11 @@ public class BowlingGameTest {
         int result = game.calcGrade(hasStrike);
         assertEquals(300, result);
     }
+
+    @Test
+    void should_success_when_receive_spare_and_strike() {
+        List<Integer> spareAndStrike = Arrays.asList(1, 1, 10, 4, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        int result = game.calcGrade(spareAndStrike);
+        assertEquals(47, result);
+    }
 }
