@@ -51,4 +51,11 @@ public class BowlingGameTest {
         List<Integer> sizeMoreThan3 = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         assertThrows(RuntimeException.class, () -> game.calcGrade(sizeMoreThan3));
     }
+
+    @Test
+    public void should_add_twice_when_has_strike() {
+        List<Integer> hasStrike = Arrays.asList(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+        int result = game.calcGrade(hasStrike);
+        assertEquals(300, result);
+    }
 }

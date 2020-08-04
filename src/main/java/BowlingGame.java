@@ -1,7 +1,8 @@
 import java.util.List;
 
 public class BowlingGame {
-    private final int MIN_LEN = 11;
+    private final int MIN_SIZE = 11;
+    private final int STRIKE_PINS = 10;
     private Line line;
     private int totGrade;
 
@@ -12,7 +13,7 @@ public class BowlingGame {
 
     public int calcGrade(List<Integer> input) {
         int inputSize = input.size();
-        if (inputSize < MIN_LEN) Utils.throwFailException("size is illegal");
+        if (inputSize < MIN_SIZE) Utils.throwFailException("size is illegal");
 
         for (int i = 0; i < inputSize; i ++) {
 
@@ -26,10 +27,15 @@ public class BowlingGame {
             int nextNextThrow = input.get(i + 2);
 
             if (curThrow < 0) Utils.throwFailException("negative number is not allowed");
-            if (10 == curThrow + nextThrow) totGrade += nextNextThrow;
 
             totGrade += curThrow;
             line.getCurrentFrame().addThrowBall();
+
+            if (STRIKE_PINS == curThrow + nextThrow) totGrade += nextNextThrow;
+            if (STRIKE_PINS == curThrow) {
+                line.getCurrentFrame().completeThisFrame();
+                totGrade += (nextThrow + nextNextThrow);
+            }
 
             if (line.getCurrentFrame().isFinished()) line.nextFrame();
         }
