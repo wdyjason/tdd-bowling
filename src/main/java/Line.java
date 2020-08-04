@@ -12,7 +12,7 @@ public class Line {
         this.frameList.add(new Frame(1));
     }
 
-    public void nextLine() {
+    public void nextFrame() {
         Frame curFrame = getCurrentFrame();
         frameList.add(new Frame(curFrame.getFrame() + 1));
     }

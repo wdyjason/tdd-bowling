@@ -1,12 +1,13 @@
 public class Frame {
-    private final int MAX_FRAME = 10;
+    public static final int MAX_FRAME = 10;
     private int throwBall;
     private int frame;
-    private boolean hasFinished;
+    private boolean isFinished;
+
     public Frame(int frame) {
         this.frame = frame;
         this.throwBall = 0;
-        this.hasFinished = false;
+        this.isFinished = false;
     }
 
     public int getThrowBall() {
@@ -15,7 +16,7 @@ public class Frame {
 
     public void addThrowBall() {
         this.throwBall ++;
-        if (throwBall == 2 && frame < MAX_FRAME) this.hasFinished = true;
+        if (throwBall == 2 && frame < MAX_FRAME) this.isFinished = true;
     }
 
     public int getFrame() {
@@ -23,7 +24,10 @@ public class Frame {
     }
 
     public void completeThisFrame() {
-        this.hasFinished = true;
+        this.isFinished = true;
     }
 
+    public boolean isFinished() {
+        return isFinished;
+    }
 }

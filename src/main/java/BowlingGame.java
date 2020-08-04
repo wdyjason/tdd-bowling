@@ -2,19 +2,41 @@ import java.util.List;
 
 public class BowlingGame {
     private final int MIN_LEN = 11;
-    Line line = new Line();
+    private Line line;
+    private int totGrade;
+
+    public BowlingGame() {
+        this.line = new Line();
+        this.totGrade = 0;
+    }
 
     public int calcGrade(List<Integer> input) {
-        int totGrade = 0;
         int inputSize = input.size();
         if (inputSize < MIN_LEN) Utils.throwFailException("size is illegal");
 
         for (int i = 0; i < inputSize; i ++) {
+
+            if (line.getCurrentFrame().getFrame() == Frame.MAX_FRAME) {
+                totGrade += calcLastFrameGrade(input.subList(i , inputSize));
+                break;
+            }
+
             int curThrow =input.get(i);
+            int nextThrow = input.get(i + 1);
+            int nextNextThrow = input.get(i + 2);
+
             if (curThrow < 0) Utils.throwFailException("negative number is not allowed");
+            if (10 == curThrow + nextThrow) totGrade += nextNextThrow;
+
             totGrade += curThrow;
             line.getCurrentFrame().addThrowBall();
+
+            if (line.getCurrentFrame().isFinished()) line.nextFrame();
         }
         return totGrade;
+    }
+
+    public int calcLastFrameGrade(List<Integer> lastFrame) {
+        return lastFrame.stream().mapToInt(h -> h).sum();
     }
 }

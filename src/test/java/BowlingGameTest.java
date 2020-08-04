@@ -31,8 +31,15 @@ public class BowlingGameTest {
 
     @Test
     public void should_add_sum_when_no_spare_and_strike() {
-        List<Integer> noSpareOrStrike = Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-        int result = game.calcGrade(noSpareOrStrike);
+        List<Integer> noSpareAndStrike = Arrays.asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        int result = game.calcGrade(noSpareAndStrike);
         assertEquals(20, result);
+    }
+
+    @Test
+    public void should_add_once_when_has_spare() {
+        List<Integer> hasSpare = Arrays.asList(0, 0, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        int result = game.calcGrade(hasSpare);
+        assertEquals(10, result);
     }
 }
