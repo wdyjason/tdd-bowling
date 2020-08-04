@@ -22,4 +22,10 @@ public class BowlingGameTest {
         assertThrows(RuntimeException.class, () -> game.calcGrade(hasNegativeNum));
     }
 
+    @Test
+    public void should_throw_exception_when_size_less_than_11() {
+        List<Integer> sizeLessThan11 = Arrays.asList(10, 10, 10, 10, 10, 10, 10, 10, 10, 1);
+        assertThrows(RuntimeException.class, () -> game.calcGrade(sizeLessThan11));
+
+    }
 }
